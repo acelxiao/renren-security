@@ -12,12 +12,14 @@
 			classpath*:renren-*.xml
 		</param-value>
 	</context-param>
-	
+
+	<!--容器会每60秒扫描log4j的配置文件,修改后不用重启-->
 	<context-param>
 		<param-name>log4jRefreshInterval</param-name>
 		<param-value>600000</param-value>
 	</context-param>
-	
+
+	<!--WebAppRootListener用到,区分同一容器下的不同应用路径-->
 	<context-param>
 		<param-name>webAppRootKey</param-name>
 		<param-value>webPath</param-value>
@@ -64,6 +66,7 @@
 	    <url-pattern>/*</url-pattern>
 	</filter-mapping>
 
+	<!-- XSS 全称(Cross Site Scripting) 跨站脚本攻击,如参数输入js-->
 	<filter>
 		<filter-name>xssFilter</filter-name>
 		<filter-class>io.renren.xss.XssFilter</filter-class>
