@@ -39,22 +39,24 @@
 			</list>
 		</property>
 	</bean>
-	
+
+	<!--StatFilter,用于统计监控信息-->
 	<bean id="stat-filter" class="com.alibaba.druid.filter.stat.StatFilter">
-		<property name="slowSqlMillis" value="1000" />
-		<property name="logSlowSql" value="true" />
-		<property name="mergeSql" value="true" />
+		<property name="slowSqlMillis" value="1000" /><!--执行时间超过1秒的sql就是慢sql-->
+		<property name="logSlowSql" value="true" /><!--通过日志输出执行慢的SQL-->
+		<property name="mergeSql" value="true" /><!--相同SQL合并-->
 	</bean>
 
+	<!--防御sql注入的filter-->
 	<bean id="wall-filter" class="com.alibaba.druid.wall.WallFilter">
 		<property name="dbType" value="mysql" />
 		<property name="config" ref="wall-filter-config" />
 	</bean>
-
 	<bean id="wall-filter-config" class="com.alibaba.druid.wall.WallConfig">
-		<property name="multiStatementAllow" value="true" />
+		<property name="multiStatementAllow" value="true" /><!--是否允许一次执行多条语句:http://blog.csdn.net/yinxiangbing/article/details/47905403-->
 	</bean>
 
+	<!-- 配置druid监控spring jdbc -->
 	<bean id="druid-stat-interceptor" class="com.alibaba.druid.support.spring.stat.DruidStatInterceptor"></bean>
 	<bean id="druid-stat-pointcut" class="org.springframework.aop.support.JdkRegexpMethodPointcut" scope="prototype">
 		<property name="patterns">
