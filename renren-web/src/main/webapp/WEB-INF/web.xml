@@ -13,7 +13,7 @@
 		</param-value>
 	</context-param>
 
-	<!--容器会每60秒扫描log4j的配置文件,修改后不用重启-->
+	<!--容器会每60秒扫描log4j的配置文件,修改后不用重启啦-->
 	<context-param>
 		<param-name>log4jRefreshInterval</param-name>
 		<param-value>600000</param-value>
