@@ -41,6 +41,8 @@ public class SysLoginController {
 	
 	@RequestMapping("captcha.jpg")
 	public void captcha(HttpServletResponse response)throws ServletException, IOException {
+		//no-cache指示请求或响应消息不能缓存
+		//no-store使得请求和响应消息都不使用缓存。
         response.setHeader("Cache-Control", "no-store, no-cache");
         response.setContentType("image/jpeg");
 
