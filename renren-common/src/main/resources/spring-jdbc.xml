@@ -80,8 +80,12 @@
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="configLocation" value="classpath:mybatis.xml" />
 		<property name="dataSource" ref="dataSource" />
+		<!--
+		  当mybatis的xml文件和mapper接口不在相同包下时，需要用mapperLocations属性指定xml文件的路径。**代表所有目录下
+          <property name="mapperLocations" value="classpath:com/test/mapper/mysql/**/*.xml" />
+        -->
 	</bean>
-
+	<!--这个配置的前提条件是：映射接口类文件(.java)和映射XML文件(.xml)需要放在相同的包下-->
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
 		<property name="basePackage" value="io.renren.dao" />
 	</bean>

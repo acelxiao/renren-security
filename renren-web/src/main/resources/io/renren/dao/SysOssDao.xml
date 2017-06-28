@@ -3,6 +3,7 @@
 
 <mapper namespace="io.renren.dao.SysOssDao">
 
+	<!--  #将传入的数据都当成一个字符串, $将传入的数据直接显示生成在sql中 ,优先使用 #{}。因为 ${} 会导致 sql 注入,order by需要注意，用$而不是#-->
 	<select id="queryObject" resultType="io.renren.entity.SysOssEntity">
 		select * from sys_oss where id = #{value}
 	</select>
