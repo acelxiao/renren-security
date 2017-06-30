@@ -29,10 +29,10 @@ public class Query extends LinkedHashMap<String, Object> {
         this.put("page", page);
         this.put("limit", limit);
 
-        //防止SQL注入（因为sidx、order是通过拼接SQL实现排序的，会有SQL注入风险）
-        String sidx = params.get("sidx").toString();
+        //防止SQL注入（因为orderItem、order是通过拼接SQL实现排序的，会有SQL注入风险）
+        String orderItem = params.get("orderItem").toString();
         String order = params.get("order").toString();
-        this.put("sidx", SQLFilter.sqlInject(sidx));
+        this.put("orderItem", SQLFilter.sqlInject(orderItem));
         this.put("order", SQLFilter.sqlInject(order));
     }
 

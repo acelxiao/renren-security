@@ -24,15 +24,15 @@
 			#end
         </where>
         <choose>
-            <when test="sidx != null and sidx.trim() != ''">
-                order by ${sidx} ${order}
+            <when test="orderItem != null and orderItem.trim() != ''">
+                order by ${orderItem} ${order}
             </when>
 			<otherwise>
                 order by ${pk.columnName} desc
 			</otherwise>
         </choose>
 		<if test="offset != null and limit != null">
-			limit #{offset}, #{limit}
+			limit #{offset}, #{pageSize}
 		</if>
 	</select>
 	

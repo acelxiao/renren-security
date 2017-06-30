@@ -18,8 +18,8 @@
 			</if>
 		</where>
 		<choose>
-			<when test="sidx != null and sidx.trim() != ''">
-				order by ${sidx} ${order}
+			<when test="orderItem != null and orderItem.trim() != ''">
+				order by ${orderItem} ${order}
 			</when>
 			<otherwise>
 				order by role_id asc
