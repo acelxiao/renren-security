@@ -32,7 +32,7 @@
 			</otherwise>
         </choose>
 		<if test="offset != null and limit != null">
-			limit #{offset}, #{pageSize}
+			limit #{offset}, #{limit}
 		</if>
 	</select>
 	
