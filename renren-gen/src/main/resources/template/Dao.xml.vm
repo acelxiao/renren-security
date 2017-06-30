@@ -16,6 +16,13 @@
 
 	<select id="queryList" resultType="${package}.entity.${className}Entity">
 		select * from ${tableName}
+        <where>
+			#foreach($column in $columns)
+				#if($column.columnName != $pk.columnName)
+					<if test="$column.attrname != null"> AND  `$column.columnName` = #{$column.attrname}#if($velocityCount != $columns.size()) #end</if>
+				#end
+			#end
+        </where>
         <choose>
             <when test="sidx != null and sidx.trim() != ''">
                 order by ${sidx} ${order}
@@ -30,7 +37,14 @@
 	</select>
 	
  	<select id="queryTotal" resultType="int">
-		select count(*) from ${tableName} 
+		select count(*) from ${tableName}
+		<where>
+			#foreach($column in $columns)
+				#if($column.columnName != $pk.columnName)
+					<if test="$column.attrname != null"> AND  `$column.columnName` = #{$column.attrname}#if($velocityCount != $columns.size()) #end</if>
+				#end
+			#end
+        </where>
 	</select>
 	 
 	<insert id="save" parameterType="${package}.entity.${className}Entity"#if($pk.extra == 'auto_increment') useGeneratedKeys="true" keyProperty="$pk.attrname"#end>
